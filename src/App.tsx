@@ -4,8 +4,10 @@ import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
 import { useEffect, useState } from 'react'
 
 function App() {
-  const [svgPosition, setSvgPosition] = useState({ x: 50, y: 50 });
+  const firstPosition = { x: 50, y: 50 };
+  const [svgPosition, setSvgPosition] = useState(firstPosition);
   const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
+  const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([]);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
