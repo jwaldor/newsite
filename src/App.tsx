@@ -8,7 +8,22 @@ function App() {
   const [svgPosition, setSvgPosition] = useState(firstPosition);
   const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
   const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([firstPosition]);
+  const skeletonRef = useRef<HTMLImageElement>(null);
 
+
+  // Add function to get corner coordinates
+  const getCornerCoordinates = () => {
+    if (skeletonRef.current) {
+      const rect = skeletonRef.current.getBoundingClientRect();
+      return {
+        topLeft: { x: rect.left, y: rect.top },
+        topRight: { x: rect.right, y: rect.top },
+        bottomLeft: { x: rect.left, y: rect.bottom },
+        bottomRight: { x: rect.right, y: rect.bottom }
+      };
+    }
+    return null;
+  };
   const handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'ArrowUp':
@@ -90,24 +105,41 @@ function App() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
       <img
+        ref={skeletonRef}
         src={skeleton}
         alt="Skeleton"
         style={{ position: 'absolute', left: svgPosition.x, top: svgPosition.y, width: '4%', height: '4%' }}
       />
       {computeRectangles().map((pair, index) => (
-        <div
+        <>{pair[0].y === pair[1].y && <div
           key={index}
           style={{
             position: 'absolute',
             left: pair[0].x,
             top: pair[0].y,
-            width: Math.abs(pair[1].x - pair[0].x),
-            height: '2px',
+            width: pair[1].x > pair[0].x ? Math.abs(pair[1].x - pair[0].x) : Math.abs(pair[1].x - pair[0].x) - 20,
+            height: '20px',
             backgroundColor: '#00FF00',
             transform: `rotate(${Math.atan2(pair[1].y - pair[0].y, pair[1].x - pair[0].x) * (180 / Math.PI)}deg)`,
             transformOrigin: 'left center'
           }}
-        />
+        />}
+          {pair[0].y !== pair[1].y && <div
+            key={index}
+            style={{
+              position: 'absolute',
+              left: pair[0].x,
+              width: '20px',
+              height: Math.abs(pair[1].y - pair[0].y),
+              bottom: pair[0].y > pair[1].y ? pair[0].y : pair[1].y,
+              top: pair[0].y < pair[1].y ? pair[0].y : pair[1].y + 40,
+              backgroundColor: '#00FF00',
+              transform: `rotate(${Math.atan2(pair[1].y - pair[0].y, pair[1].x - pair[0].x) * (0 / Math.PI)}deg)`,
+              transformOrigin: 'left center'
+            }}
+          />}
+        </>
+
       ))}
       <header className="mb-8">
         <nav className="flex justify-between items-center">
