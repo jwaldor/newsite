@@ -1,7 +1,7 @@
 import headshot from "./assets/FT.headshots_180824_jacob-17.jpg"
 import linkedin from "./assets/LI-In-Bug.png"
 import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function App() {
   const firstPosition = { x: 50, y: 50 };
@@ -45,6 +45,41 @@ function App() {
     }
     return pairs;
   }
+
+
+  const useSetInterval = (callback: () => void, delay: number) => {
+    const savedCallback = useRef(callback);
+
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    useEffect(() => {
+      const tick = () => {
+        savedCallback.current();
+      };
+      const interval = setInterval(tick, delay);
+      return () => clearInterval(interval);
+    }, [delay]);
+  };
+
+  useSetInterval(() => {
+    console.log(direction);
+    setSvgPosition(prevPosition => {
+      switch (direction) {
+        case 'up':
+          return { x: prevPosition.x, y: prevPosition.y - 1 };
+        case 'down':
+          return { x: prevPosition.x, y: prevPosition.y + 1 };
+        case 'left':
+          return { x: prevPosition.x - 1, y: prevPosition.y };
+        case 'right':
+          return { x: prevPosition.x + 1, y: prevPosition.y };
+        default:
+          return prevPosition;
+      }
+    });
+  }, 30);
 
 
   console.log(direction);
