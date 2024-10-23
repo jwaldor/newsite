@@ -1,5 +1,6 @@
 import headshot from "./assets/FT.headshots_180824_jacob-17.jpg"
 import linkedin from "./assets/LI-In-Bug.png"
+import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
 
 function App() {
 
