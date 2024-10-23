@@ -37,6 +37,16 @@ function App() {
     };
   }, []);
 
+  const computeRectangles = () => {
+    const rectangles = traveledCoords.concat(svgPosition);
+    const pairs = [];
+    for (let i = 0; i < rectangles.length - 1; i += 2) {
+      pairs.push([rectangles[i], rectangles[i + 1]]);
+    }
+    return pairs;
+  }
+
+
   console.log(direction);
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
