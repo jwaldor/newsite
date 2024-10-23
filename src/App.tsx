@@ -24,6 +24,7 @@ function App() {
         setDirection('right');
         break;
     }
+    setTraveledCoords([...traveledCoords, svgPosition, svgPosition]);
   };
 
   // Add event listener when component mounts
