@@ -14,18 +14,18 @@ function App() {
 
 
   // Add function to get corner coordinates
-  const getCornerCoordinates = () => {
-    if (skeletonRef.current) {
-      const rect = skeletonRef.current.getBoundingClientRect();
-      return {
-        topLeft: { x: rect.left, y: rect.top },
-        topRight: { x: rect.right, y: rect.top },
-        bottomLeft: { x: rect.left, y: rect.bottom },
-        bottomRight: { x: rect.right, y: rect.bottom }
-      };
-    }
-    return null;
-  };
+  // const getCornerCoordinates = () => {
+  //   if (skeletonRef.current) {
+  //     const rect = skeletonRef.current.getBoundingClientRect();
+  //     return {
+  //       topLeft: { x: rect.left, y: rect.top },
+  //       topRight: { x: rect.right, y: rect.top },
+  //       bottomLeft: { x: rect.left, y: rect.bottom },
+  //       bottomRight: { x: rect.right, y: rect.bottom }
+  //     };
+  //   }
+  //   return null;
+  // };
   const handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'ArrowUp':
