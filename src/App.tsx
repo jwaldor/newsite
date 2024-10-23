@@ -1,12 +1,40 @@
 import headshot from "./assets/FT.headshots_180824_jacob-17.jpg"
 import linkedin from "./assets/LI-In-Bug.png"
 import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
   const [svgPosition, setSvgPosition] = useState({ x: 50, y: 50 });
   const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowUp':
+        setDirection('up');
+        break;
+      case 'ArrowDown':
+        setDirection('down');
+        break;
+      case 'ArrowLeft':
+        setDirection('left');
+        break;
+      case 'ArrowRight':
+        setDirection('right');
+        break;
+    }
+  };
+
+  // Add event listener when component mounts
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup listener when component unmounts
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  console.log(direction);
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
       <img
