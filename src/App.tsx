@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 function App() {
   const [svgPosition, setSvgPosition] = useState({ x: 50, y: 50 });
+  const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
