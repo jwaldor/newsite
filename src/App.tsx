@@ -1,10 +1,150 @@
 import headshot from "./assets/FT.headshots_180824_jacob-17.jpg"
 import linkedin from "./assets/LI-In-Bug.png"
+import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
+import { useEffect, useRef, useState } from 'react'
 
 function App() {
+  const firstPosition = { x: 50, y: 400 };
+  const [svgPosition, setSvgPosition] = useState(firstPosition);
+  const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
+  const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([firstPosition]);
+  const skeletonRef = useRef<HTMLImageElement>(null);
+  const [showPlayButton, setShowPlayButton] = useState(false);
+  const [surprise, setSurprise] = useState(false);
 
+
+  // Add function to get corner coordinates
+  // const getCornerCoordinates = () => {
+  //   if (skeletonRef.current) {
+  //     const rect = skeletonRef.current.getBoundingClientRect();
+  //     return {
+  //       topLeft: { x: rect.left, y: rect.top },
+  //       topRight: { x: rect.right, y: rect.top },
+  //       bottomLeft: { x: rect.left, y: rect.bottom },
+  //       bottomRight: { x: rect.right, y: rect.bottom }
+  //     };
+  //   }
+  //   return null;
+  // };
+  const handleKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowUp':
+        setDirection('up');
+        break;
+      case 'ArrowDown':
+        setDirection('down');
+        break;
+      case 'ArrowLeft':
+        setDirection('left');
+        break;
+      case 'ArrowRight':
+        setDirection('right');
+        break;
+    }
+    setSvgPosition(currentPosition => {
+      console.log(currentPosition);
+      setTraveledCoords(prev => [...prev, currentPosition, currentPosition]);
+      return currentPosition;
+    });
+  };
+
+  // Add event listener when component mounts
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup listener when component unmounts
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const computeRectangles = () => {
+    const rectangles = traveledCoords.concat(svgPosition);
+    const pairs = [];
+    for (let i = 0; i < rectangles.length - 1; i += 2) {
+      pairs.push([rectangles[i], rectangles[i + 1]]);
+    }
+    return pairs;
+  }
+
+
+  const useSetInterval = (callback: () => void, delay: number) => {
+    const savedCallback = useRef(callback);
+
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    useEffect(() => {
+      const tick = () => {
+        savedCallback.current();
+      };
+      const interval = setInterval(tick, delay);
+      return () => clearInterval(interval);
+    }, [delay]);
+  };
+
+  useSetInterval(() => {
+    if (!surprise) {
+      return;
+    }
+    setSvgPosition(prevPosition => {
+      switch (direction) {
+        case 'up':
+          return { x: prevPosition.x, y: prevPosition.y - 1 };
+        case 'down':
+          return { x: prevPosition.x, y: prevPosition.y + 1 };
+        case 'left':
+          return { x: prevPosition.x - 1, y: prevPosition.y };
+        case 'right':
+          return { x: prevPosition.x + 1, y: prevPosition.y };
+        default:
+          return prevPosition;
+      }
+    });
+  }, 30);
+
+
+  // console.log("rectangles", computeRectangles(), "done");
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
+      {surprise && <img
+        ref={skeletonRef}
+        src={skeleton}
+        alt="Skeleton"
+        style={{ position: 'absolute', left: svgPosition.x, top: svgPosition.y, width: '4%', height: '4%' }}
+      />}
+      {computeRectangles().map((pair, index) => (
+        <>{pair[0].y === pair[1].y && <div
+          key={index}
+          style={{
+            position: 'absolute',
+            left: pair[0].x,
+            top: pair[0].y,
+            width: pair[1].x > pair[0].x ? Math.abs(pair[1].x - pair[0].x) : Math.abs(pair[1].x - pair[0].x) - 20,
+            height: '20px',
+            backgroundColor: '#00FF00',
+            transform: `rotate(${Math.atan2(pair[1].y - pair[0].y, pair[1].x - pair[0].x) * (180 / Math.PI)}deg)`,
+            transformOrigin: 'left center'
+          }}
+        />}
+          {pair[0].y !== pair[1].y && <div
+            key={index}
+            style={{
+              position: 'absolute',
+              left: pair[0].x,
+              width: '20px',
+              height: Math.abs(pair[1].y - pair[0].y),
+              bottom: pair[0].y > pair[1].y ? pair[0].y : pair[1].y,
+              top: pair[0].y < pair[1].y ? pair[0].y : pair[1].y + 40,
+              backgroundColor: '#00FF00',
+              transform: `rotate(${Math.atan2(pair[1].y - pair[0].y, pair[1].x - pair[0].x) * (0 / Math.PI)}deg)`,
+              transformOrigin: 'left center'
+            }}
+          />}
+        </>
+
+      ))}
       <header className="mb-8">
         <nav className="flex justify-between items-center">
           <h1 className="text-xl font-semibold">Jacob Waldor</h1>
@@ -83,22 +223,37 @@ function App() {
               </h3>
               <p className="mb-2">An AI-powered party game</p>
             </div>
+            <div className=" p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2">
+                <a href="https://multipong.onrender.com" className="inline-block">
+                  Pong
+                </a>
+                <a href="https://multipong.onrender.com" className="ml-2 inline-block align-middle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative -top-[2px]">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </h3>
+              <p className="mb-2">A multiplayer pong game</p>
+            </div>
+            <div className=" p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2">
+                <button
+                  className={`cursor-pointer ${showPlayButton ? 'text-green-500 hover:text-green-600' : ''}`}
+                  onClick={() => {
+                    setShowPlayButton(true);
+                  }}
+                >
+                  {showPlayButton ? <span onClick={() => { setSurprise(true); console.log("surprise"); }}>▶</span> : 'A Little Surprise'}
+                </button>
+              </h3>
+              <p className="mb-2">A little surprise</p>
+            </div>
           </div>
-          <div className=" p-4 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">
-              <a href="https://multipong.onrender.com" className="inline-block">
-                Pong
-              </a>
-              <a href="https://multipong.onrender.com" className="ml-2 inline-block align-middle">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative -top-[2px]">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
-            </h3>
-            <p className="mb-2">A multiplayer pong game</p>
-          </div>
+
+
         </section>
 
         <section className="mb-8">
