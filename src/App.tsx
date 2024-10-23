@@ -7,7 +7,7 @@ function App() {
   const firstPosition = { x: 50, y: 50 };
   const [svgPosition, setSvgPosition] = useState(firstPosition);
   const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
-  const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([]);
+  const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([firstPosition]);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
@@ -24,7 +24,11 @@ function App() {
         setDirection('right');
         break;
     }
-    setTraveledCoords([...traveledCoords, svgPosition, svgPosition]);
+    setSvgPosition(currentPosition => {
+      console.log(currentPosition);
+      setTraveledCoords(prev => [...prev, currentPosition, currentPosition]);
+      return currentPosition;
+    });
   };
 
   // Add event listener when component mounts
@@ -64,7 +68,7 @@ function App() {
   };
 
   useSetInterval(() => {
-    console.log(direction);
+
     setSvgPosition(prevPosition => {
       switch (direction) {
         case 'up':
@@ -82,7 +86,7 @@ function App() {
   }, 30);
 
 
-  console.log(direction);
+  // console.log("rectangles", computeRectangles(), "done");
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
       <img
@@ -90,6 +94,21 @@ function App() {
         alt="Skeleton"
         style={{ position: 'absolute', left: svgPosition.x, top: svgPosition.y, width: '4%', height: '4%' }}
       />
+      {computeRectangles().map((pair, index) => (
+        <div
+          key={index}
+          style={{
+            position: 'absolute',
+            left: pair[0].x,
+            top: pair[0].y,
+            width: Math.abs(pair[1].x - pair[0].x),
+            height: '2px',
+            backgroundColor: '#00FF00',
+            transform: `rotate(${Math.atan2(pair[1].y - pair[0].y, pair[1].x - pair[0].x) * (180 / Math.PI)}deg)`,
+            transformOrigin: 'left center'
+          }}
+        />
+      ))}
       <header className="mb-8">
         <nav className="flex justify-between items-center">
           <h1 className="text-xl font-semibold">Jacob Waldor</h1>
