@@ -4,11 +4,13 @@ import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
 import { useEffect, useRef, useState } from 'react'
 
 function App() {
-  const firstPosition = { x: 50, y: 50 };
+  const firstPosition = { x: 50, y: 400 };
   const [svgPosition, setSvgPosition] = useState(firstPosition);
   const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
   const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([firstPosition]);
   const skeletonRef = useRef<HTMLImageElement>(null);
+  const [showPlayButton, setShowPlayButton] = useState(false);
+  const [surprise, setSurprise] = useState(false);
 
 
   // Add function to get corner coordinates
@@ -83,7 +85,9 @@ function App() {
   };
 
   useSetInterval(() => {
-
+    if (!surprise) {
+      return;
+    }
     setSvgPosition(prevPosition => {
       switch (direction) {
         case 'up':
@@ -104,12 +108,12 @@ function App() {
   // console.log("rectangles", computeRectangles(), "done");
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
-      <img
+      {surprise && <img
         ref={skeletonRef}
         src={skeleton}
         alt="Skeleton"
         style={{ position: 'absolute', left: svgPosition.x, top: svgPosition.y, width: '4%', height: '4%' }}
-      />
+      />}
       {computeRectangles().map((pair, index) => (
         <>{pair[0].y === pair[1].y && <div
           key={index}
@@ -219,22 +223,37 @@ function App() {
               </h3>
               <p className="mb-2">An AI-powered party game</p>
             </div>
+            <div className=" p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2">
+                <a href="https://multipong.onrender.com" className="inline-block">
+                  Pong
+                </a>
+                <a href="https://multipong.onrender.com" className="ml-2 inline-block align-middle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative -top-[2px]">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </h3>
+              <p className="mb-2">A multiplayer pong game</p>
+            </div>
+            <div className=" p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2">
+                <button
+                  className={`cursor-pointer ${showPlayButton ? 'text-green-500 hover:text-green-600' : ''}`}
+                  onClick={() => {
+                    setShowPlayButton(true);
+                  }}
+                >
+                  {showPlayButton ? <span onClick={() => { setSurprise(true); console.log("surprise"); }}>▶</span> : 'A Little Surprise'}
+                </button>
+              </h3>
+              <p className="mb-2">A little surprise</p>
+            </div>
           </div>
-          <div className=" p-4 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">
-              <a href="https://multipong.onrender.com" className="inline-block">
-                Pong
-              </a>
-              <a href="https://multipong.onrender.com" className="ml-2 inline-block align-middle">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative -top-[2px]">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
-            </h3>
-            <p className="mb-2">A multiplayer pong game</p>
-          </div>
+
+
         </section>
 
         <section className="mb-8">
