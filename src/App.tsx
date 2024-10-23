@@ -1,11 +1,18 @@
 import headshot from "./assets/FT.headshots_180824_jacob-17.jpg"
 import linkedin from "./assets/LI-In-Bug.png"
 import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
+import { useState } from 'react'
 
 function App() {
+  const [svgPosition, setSvgPosition] = useState({ x: 50, y: 50 });
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
+      <img
+        src={skeleton}
+        alt="Skeleton"
+        style={{ position: 'absolute', left: svgPosition.x, top: svgPosition.y, width: '4%', height: '4%' }}
+      />
       <header className="mb-8">
         <nav className="flex justify-between items-center">
           <h1 className="text-xl font-semibold">Jacob Waldor</h1>
