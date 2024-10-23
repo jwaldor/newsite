@@ -1,11 +1,7 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import headshot from "./assets/FT.headshots_180824_jacob-17.jpg"
 import linkedin from "./assets/LI-In-Bug.png"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
