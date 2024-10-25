@@ -238,7 +238,7 @@ function App() {
               </h3>
               <p className="mb-2">A multiplayer pong game</p>
             </div>
-            <div className=" p-4 rounded-lg">
+            {/* <div className=" p-4 rounded-lg">
               <h3 className="text-lg font-semibold mb-2">
                 <button
                   className={`cursor-pointer ${showPlayButton ? 'text-green-500 hover:text-green-600' : ''}`}
@@ -250,7 +250,7 @@ function App() {
                 </button>
               </h3>
               <p className="mb-2">A little surprise</p>
-            </div>
+            </div> */}
           </div>
 
 
