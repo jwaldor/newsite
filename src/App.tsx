@@ -1,13 +1,13 @@
 import headshot from "./assets/FT.headshots_180824_jacob-17.jpg"
 import linkedin from "./assets/LI-In-Bug.png"
 // import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
-import { useEffect, useRef, useState } from 'react'
+// import { useEffect, useRef, useState } from 'react'
 
 function App() {
-  const firstPosition = { x: 50, y: 400 };
-  const [svgPosition, setSvgPosition] = useState(firstPosition);
-  const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
-  const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([firstPosition]);
+  // const firstPosition = { x: 50, y: 400 };
+  // const [svgPosition, setSvgPosition] = useState(firstPosition);
+  // const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
+  // const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([firstPosition]);
   // const skeletonRef = useRef<HTMLImageElement>(null);
   // const [showPlayButton, setShowPlayButton] = useState(false);
   // const [surprise, setSurprise] = useState(false);
@@ -26,83 +26,83 @@ function App() {
   //   }
   //   return null;
   // };
-  const handleKeyDown = (event: KeyboardEvent) => {
-    switch (event.key) {
-      case 'ArrowUp':
-        setDirection('up');
-        break;
-      case 'ArrowDown':
-        setDirection('down');
-        break;
-      case 'ArrowLeft':
-        setDirection('left');
-        break;
-      case 'ArrowRight':
-        setDirection('right');
-        break;
-    }
-    setSvgPosition(currentPosition => {
-      console.log(currentPosition);
-      setTraveledCoords(prev => [...prev, currentPosition, currentPosition]);
-      return currentPosition;
-    });
-  };
+  // const handleKeyDown = (event: KeyboardEvent) => {
+  //   switch (event.key) {
+  //     case 'ArrowUp':
+  //       setDirection('up');
+  //       break;
+  //     case 'ArrowDown':
+  //       setDirection('down');
+  //       break;
+  //     case 'ArrowLeft':
+  //       setDirection('left');
+  //       break;
+  //     case 'ArrowRight':
+  //       setDirection('right');
+  //       break;
+  //   }
+  //   setSvgPosition(currentPosition => {
+  //     console.log(currentPosition);
+  //     setTraveledCoords(prev => [...prev, currentPosition, currentPosition]);
+  //     return currentPosition;
+  //   });
+  // };
 
-  // Add event listener when component mounts
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
+  // // Add event listener when component mounts
+  // useEffect(() => {
+  //   window.addEventListener('keydown', handleKeyDown);
 
-    // Cleanup listener when component unmounts
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
+  //   // Cleanup listener when component unmounts
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, []);
 
-  const computeRectangles = () => {
-    const rectangles = traveledCoords.concat(svgPosition);
-    const pairs = [];
-    for (let i = 0; i < rectangles.length - 1; i += 2) {
-      pairs.push([rectangles[i], rectangles[i + 1]]);
-    }
-    return pairs;
-  }
+  // const computeRectangles = () => {
+  //   const rectangles = traveledCoords.concat(svgPosition);
+  //   const pairs = [];
+  //   for (let i = 0; i < rectangles.length - 1; i += 2) {
+  //     pairs.push([rectangles[i], rectangles[i + 1]]);
+  //   }
+  //   return pairs;
+  // }
 
 
-  const useSetInterval = (callback: () => void, delay: number) => {
-    const savedCallback = useRef(callback);
+  // const useSetInterval = (callback: () => void, delay: number) => {
+  //   const savedCallback = useRef(callback);
 
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
+  //   useEffect(() => {
+  //     savedCallback.current = callback;
+  //   }, [callback]);
 
-    useEffect(() => {
-      const tick = () => {
-        savedCallback.current();
-      };
-      const interval = setInterval(tick, delay);
-      return () => clearInterval(interval);
-    }, [delay]);
-  };
+  //   useEffect(() => {
+  //     const tick = () => {
+  //       savedCallback.current();
+  //     };
+  //     const interval = setInterval(tick, delay);
+  //     return () => clearInterval(interval);
+  //   }, [delay]);
+  // };
 
-  useSetInterval(() => {
-    // if (!surprise) {
-    //   return;
-    // }
-    setSvgPosition(prevPosition => {
-      switch (direction) {
-        case 'up':
-          return { x: prevPosition.x, y: prevPosition.y - 1 };
-        case 'down':
-          return { x: prevPosition.x, y: prevPosition.y + 1 };
-        case 'left':
-          return { x: prevPosition.x - 1, y: prevPosition.y };
-        case 'right':
-          return { x: prevPosition.x + 1, y: prevPosition.y };
-        default:
-          return prevPosition;
-      }
-    });
-  }, 30);
+  // useSetInterval(() => {
+  //   // if (!surprise) {
+  //   //   return;
+  //   // }
+  //   setSvgPosition(prevPosition => {
+  //     switch (direction) {
+  //       case 'up':
+  //         return { x: prevPosition.x, y: prevPosition.y - 1 };
+  //       case 'down':
+  //         return { x: prevPosition.x, y: prevPosition.y + 1 };
+  //       case 'left':
+  //         return { x: prevPosition.x - 1, y: prevPosition.y };
+  //       case 'right':
+  //         return { x: prevPosition.x + 1, y: prevPosition.y };
+  //       default:
+  //         return prevPosition;
+  //     }
+  //   });
+  // }, 30);
 
 
   // console.log("rectangles", computeRectangles(), "done");
@@ -114,7 +114,7 @@ function App() {
         alt="Skeleton"
         style={{ position: 'absolute', left: svgPosition.x, top: svgPosition.y, width: '4%', height: '4%' }}
       />} */}
-      {computeRectangles().map((pair, index) => (
+      {/* {computeRectangles().map((pair, index) => (
         <>{pair[0].y === pair[1].y && <div
           key={index}
           style={{
@@ -144,7 +144,7 @@ function App() {
           />}
         </>
 
-      ))}
+      ))} */}
       <header className="mb-8">
         <nav className="flex justify-between items-center">
           <h1 className="text-xl font-semibold">Jacob Waldor</h1>
