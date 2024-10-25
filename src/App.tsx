@@ -1,6 +1,6 @@
 import headshot from "./assets/FT.headshots_180824_jacob-17.jpg"
 import linkedin from "./assets/LI-In-Bug.png"
-import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
+// import skeleton from "./assets/evil-skeleton-rpg-svgrepo-com (1).svg"
 import { useEffect, useRef, useState } from 'react'
 
 function App() {
@@ -8,9 +8,9 @@ function App() {
   const [svgPosition, setSvgPosition] = useState(firstPosition);
   const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right'>('right');
   const [traveledCoords, setTraveledCoords] = useState<{ x: number, y: number }[]>([firstPosition]);
-  const skeletonRef = useRef<HTMLImageElement>(null);
-  const [showPlayButton, setShowPlayButton] = useState(false);
-  const [surprise, setSurprise] = useState(false);
+  // const skeletonRef = useRef<HTMLImageElement>(null);
+  // const [showPlayButton, setShowPlayButton] = useState(false);
+  // const [surprise, setSurprise] = useState(false);
 
 
   // Add function to get corner coordinates
@@ -85,9 +85,9 @@ function App() {
   };
 
   useSetInterval(() => {
-    if (!surprise) {
-      return;
-    }
+    // if (!surprise) {
+    //   return;
+    // }
     setSvgPosition(prevPosition => {
       switch (direction) {
         case 'up':
@@ -108,12 +108,12 @@ function App() {
   // console.log("rectangles", computeRectangles(), "done");
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 font-sans">
-      {surprise && <img
+      {/* {surprise && <img
         ref={skeletonRef}
         src={skeleton}
         alt="Skeleton"
         style={{ position: 'absolute', left: svgPosition.x, top: svgPosition.y, width: '4%', height: '4%' }}
-      />}
+      />} */}
       {computeRectangles().map((pair, index) => (
         <>{pair[0].y === pair[1].y && <div
           key={index}
