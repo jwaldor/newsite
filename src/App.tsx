@@ -209,6 +209,22 @@ function App() {
               <p className="mb-2">Visual demonstration of a common computer science algorithms</p>
             </div>
             <div className=" p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2 flex flex-row items-center">
+                <a href="https://arxiv.org/abs/2209.11389" className="inline-block">
+                  Probability Paper
+                </a>
+                <a href="https://arxiv.org/abs/2209.11389" className="ml-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </h3>
+              <p className="mb-2">Published paper on probability at Pomona College, "Limiting Distributions of Sums with Random Spectral Weights"
+              </p>
+            </div>
+            <div className=" p-4 rounded-lg">
               <h3 className="text-lg font-semibold mb-2">
                 <a href="https://quipai.onrender.com" className="inline-block">
                   Quipai
