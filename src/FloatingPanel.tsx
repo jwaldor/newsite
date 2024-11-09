@@ -30,6 +30,10 @@ export const FloatingPanel = ({ visible, children }: { visible: boolean, childre
     //     return css;
     // };
     const [waiting, setWaiting] = useState(false);
+    const [lastSentInputs, setLastSentInputs] = useState<string[]>([]);
+    function addToLastSentInputs(input: string) {
+        setLastSentInputs((prev) => [...prev, input].slice(0, 5));
+    }
 
     function buildComponentTree(html: string): string {
         const parser = new DOMParser();
@@ -175,13 +179,15 @@ export const FloatingPanel = ({ visible, children }: { visible: boolean, childre
     const handleSubmit = async () => {
         setWaiting(true);
         setFloatingInput('');
-        const mod = await callStylerAPI({ input: floatingInput, state: state });
+        console.log("User input: " + floatingInput + ", \n\n For context, here are the last 2 inputs from user: " + lastSentInputs.slice(-2).join('\n '));
+        const mod = await callStylerAPI({ input: "User input: " + floatingInput + ", \n\n For context, last 2 inputs from user: \n" + lastSentInputs.slice(-2).join('\n '), state: state });
         console.log("mod", mod);
         const parsedObject = parseStringAsObject(mod);
         if (parsedObject) {
             // Use Lodash's merge function for deep merging
             setState(_.merge({}, state, parsedObject));
         }
+        addToLastSentInputs(floatingInput);
         // Example of using setState to update context state
         // setState(prevState => ({ ...prevState, newValue: floatingInput }));
         setWaiting(false);
@@ -199,6 +205,12 @@ export const FloatingPanel = ({ visible, children }: { visible: boolean, childre
                     <textarea
                         value={floatingInput}
                         onChange={(e) => setFloatingInput(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                e.preventDefault(); // Prevents new line on Enter
+                                handleSubmit();
+                            }
+                        }}
                         placeholder="Enter styling instructions... e.g. make it retro, make the image transparent"
                         className="p-2 bg-gray-700 text-white rounded resize-none"
                         rows={2}
