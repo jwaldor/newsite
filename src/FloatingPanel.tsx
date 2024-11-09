@@ -117,7 +117,7 @@ export const FloatingPanel = ({ visible, children }: { visible: boolean, childre
     }, []);
 
 
-    function parseStringAsObject(str: string | undefined | null): object | undefined {
+    function parseStringAsObject(str: string | undefined | null): Record<string, Record<string, string>> | undefined {
         if (!str || str === undefined || str === null) {
             console.error('Undefined passed to parseStringAsObject', str);
             return undefined;
@@ -183,9 +183,16 @@ export const FloatingPanel = ({ visible, children }: { visible: boolean, childre
         const mod = await callStylerAPI({ input: "User input: " + floatingInput + ", \n\n For context, last 2 inputs from user: \n" + lastSentInputs.slice(-2).join('\n '), state: state });
         console.log("mod", mod);
         const parsedObject = parseStringAsObject(mod);
+
         if (parsedObject) {
+            const filteredObject = Object.keys(parsedObject)
+                .filter(key => key in state)
+                .reduce((obj: Record<string, Record<string, string>>, key) => {
+                    obj[key] = parsedObject[key];
+                    return obj;
+                }, {});
             // Use Lodash's merge function for deep merging
-            setState(_.merge({}, state, parsedObject));
+            setState(_.merge({}, state, filteredObject));
         }
         addToLastSentInputs(floatingInput);
         // Example of using setState to update context state
