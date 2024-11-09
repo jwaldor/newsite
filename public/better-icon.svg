@@ -1,0 +1,13 @@
+<!-- personal2/public/better-icon.svg -->
+<!-- personal2/public/better-icon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <circle cx="32" cy="32" r="12" fill="yellow" />
+  <line x1="32" y1="0" x2="32" y2="10" stroke="orange" stroke-width="2" />
+  <line x1="32" y1="54" x2="32" y2="64" stroke="orange" stroke-width="2" />
+  <line x1="0" y1="32" x2="10" y2="32" stroke="orange" stroke-width="2" />
+  <line x1="54" y1="32" x2="64" y2="32" stroke="orange" stroke-width="2" />
+  <line x1="9.29" y1="9.29" x2="15.36" y2="15.36" stroke="orange" stroke-width="2" />
+  <line x1="48.64" y1="48.64" x2="54.71" y2="54.71" stroke="orange" stroke-width="2" />
+  <line x1="9.29" y1="54.71" x2="15.36" y2="48.64" stroke="orange" stroke-width="2" />
+  <line x1="48.64" y1="15.36" x2="54.71" y2="9.29" stroke="orange" stroke-width="2" />
+</svg>
