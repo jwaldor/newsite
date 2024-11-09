@@ -7,7 +7,7 @@ import { AppContext, useGenerateTags } from "./ContextHelpers";
 function App() {
   const initialState = {
     mainContainerStyle: {
-      maxWidth: '3xl',
+      maxWidth: '48rem',
       margin: 'auto',
       padding: '2rem 1rem',
       fontFamily: 'sans-serif',
