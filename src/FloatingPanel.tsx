@@ -185,14 +185,14 @@ export const FloatingPanel = ({ visible, children }: { visible: boolean, childre
         const parsedObject = parseStringAsObject(mod);
 
         if (parsedObject) {
-            const filteredObject = Object.keys(parsedObject)
-                .filter(key => key in state)
-                .reduce((obj: Record<string, Record<string, string>>, key) => {
-                    obj[key] = parsedObject[key];
-                    return obj;
-                }, {});
+            // const filteredObject = Object.keys(parsedObject)
+            //     .filter(key => key in state)
+            //     .reduce((obj: Record<string, Record<string, string>>, key) => {
+            //         obj[key] = parsedObject[key];
+            //         return obj;
+            //     }, {});
             // Use Lodash's merge function for deep merging
-            setState(_.merge({}, state, filteredObject));
+            setState(_.merge({}, state, parsedObject));
         }
         addToLastSentInputs(floatingInput);
         // Example of using setState to update context state
