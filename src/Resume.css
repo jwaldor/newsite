@@ -1,0 +1,12 @@
+/* ShortenedApp.css */
+@media print {
+  @page {
+    margin: 0 0 0.5in 0; /* Add 0.5 inch bottom margin, remove other margins */
+  }
+  body {
+    margin: 0; /* Remove body margin */
+  }
+  footer {
+    display: none;
+  }
+}
