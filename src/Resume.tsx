@@ -4,7 +4,7 @@ import './Resume.css'; // Ensure to import the CSS file
 
 function ShortenedApp() {
     return (
-        <div className="w-full mx-auto p-2 bg-white shadow-lg h-screen">
+        <div className="w-full mx-auto p-2 bg-white shadow-lg min-h-screen">
             <header className="text-center mb-2">
                 <h1 className="text-xl font-bold">JACOB WALDOR</h1>
                 <p className="text-xs">New York, NY | P: (973) 951-7500 | jacobwaldor@gmail.com | <a href="https://jacobwaldor.com" className="underline text-black">jacobwaldor.com</a></p>
