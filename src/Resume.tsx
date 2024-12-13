@@ -17,7 +17,7 @@ function ShortenedApp() {
                     <div className="mb-0.5"><strong>Backend:</strong> Python, Docker, Express, Socket.IO</div>
                     <div className="mb-0.5"><strong>Full Stack & Auth:</strong> Clerk, Next.JS, Typescript</div>
                     <div className="mb-0.5"><strong>Databases:</strong> Redis, Prisma, MongoDB</div>
-                    <div className="mb-0.5"><strong>APIs:</strong> OpenAI, Anthropic, Stripe, DeepGram, GitHub</div>
+                    <div className="mb-0.5"><strong>APIs:</strong> OpenAI, Anthropic, Stripe, DeepGram, GitHub, HubSpot</div>
                     <div className="mb-0.5"><strong>Deployment:</strong> Vercel, Railway, Render, AWS EC2, AWS S3, AWS Lambda Functions</div>
                     <div className="mb-0.5"><strong>Data Science:</strong> Sklearn, Pandas, Probability, Statistics, Bayesian Statistics, Linear Programming</div>
                 </div>
@@ -31,8 +31,21 @@ function ShortenedApp() {
                     </div>
                     <p className="text-xs">August 2024 – Present</p>
                     <ul className="list-disc list-inside text-xs">
-                        <li>Used Next.JS, WorkOS Authkit, Anthropic API, Deepgram API, and Cartesia API to develop voice AI for emotional work</li>
+                        <li>Developed an AI-powered flower arrangement marketplace using TypeScript, Next.js, Express, Prisma, and Stripe, enabling personalized customer-flower matching that provides an engaging and streamlined experience for users.
+                        </li>
+                        <li>Developed an interactive audio AI for emotional work using TypeScript, Next.JS, Prisma, Anthropic API, Deepgram API, Cartesia API, and Prisma</li>
                         <li>Shipped 15+ PRs weekly. Built AI-powered UI copilot (2nd place) and multiplayer party game Quipai (3rd place) in hackathons</li>
+                    </ul>
+                </div>
+
+                <div className="mb-1">
+                    <div className="flex justify-between items-baseline">
+                        <h3 className="text-sm"><strong>Software Developer</strong> | Quiller</h3>
+                        <span className="text-xs">Brooklyn, NY</span>
+                    </div>
+                    <p className="text-xs">November 2024-present</p>
+                    <ul className="list-disc list-inside text-xs">
+                        <li>Using TypeScript, Prisma, and the HubSpot API, developed and implemented an automated user onboarding system integrating Hubspot with internal systems, reducing manual setup time by 80% and improving new user activation rates</li>
                     </ul>
                 </div>
 
@@ -41,9 +54,10 @@ function ShortenedApp() {
                         <h3 className="text-sm"><strong>Software Developer</strong> | Open Book Club</h3>
                         <span className="text-xs">Brooklyn, NY</span>
                     </div>
-                    <p className="text-xs">October 2024-present</p>
+                    <p className="text-xs">October 2024-November 2024</p>
                     <ul className="list-disc list-inside text-xs">
-                        <li>Used JavaScript, React, MongoDB, Tailwind CSS, Express, and Twilio to develop notification center for book club platform</li>
+                        <li>Used JavaScript, React, MongoDB, Tailwind CSS, and Express to develop notification center for book club platform</li>
+                        <li>Used React hooks to fix bug that resulted in unnecessary user logins </li>
                         <li>Implemented polling to keep notifications up to date without refresh and used JavaScript Intersection Observer API for lazy scrolling</li>
                     </ul>
                 </div>

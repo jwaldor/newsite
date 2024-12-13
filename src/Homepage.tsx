@@ -185,6 +185,21 @@ function App() {
                   </h3>
                   <p {...useGenerateTags("projectDescriptionStyle", state)} className="mb-2">A romantic way to buy flowers</p>
                 </div>
+                <div className="p-4 rounded-lg">
+                  <h3 {...useGenerateTags("projectTitleStyle", state)}>
+                    <a href="https://felt-sense.vercel.app" className="inline-block">
+                      Felt Sense
+                    </a>
+                    <a href="https://felt-sense.vercel.app" className="ml-2 inline-block align-middle">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative -top-[2px]">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
+                  </h3>
+                  <p {...useGenerateTags("projectDescriptionStyle", state)} className="mb-2">A voice AI for emotional work</p>
+                </div>
               </div>
             </section>
 
