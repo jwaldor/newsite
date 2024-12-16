@@ -15,7 +15,7 @@ function ShortenedApp() {
                 <div className="text-xs">
                     <div className="mb-0.5"><strong>Frontend:</strong> React, Tailwind CSS, Framer Motion, shadcn, React Router</div>
                     <div className="mb-0.5"><strong>Backend:</strong> Python, Docker, Express, Socket.IO</div>
-                    <div className="mb-0.5"><strong>Full Stack & Auth:</strong> Clerk, Next.JS, Typescript</div>
+                    <div className="mb-0.5"><strong>Full Stack & Auth:</strong> Clerk, Next.JS, TypeScript</div>
                     <div className="mb-0.5"><strong>Databases:</strong> Redis, Prisma, MongoDB</div>
                     <div className="mb-0.5"><strong>APIs:</strong> OpenAI, Anthropic, Stripe, DeepGram, GitHub, HubSpot</div>
                     <div className="mb-0.5"><strong>Deployment:</strong> Vercel, Railway, Render, AWS EC2, AWS S3, AWS Lambda Functions</div>
