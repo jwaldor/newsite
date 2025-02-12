@@ -29,7 +29,7 @@ function ShortenedApp() {
                         <h3 className="text-sm"><strong>Software Developer</strong> | Fractal Development Accelerator</h3>
                         <span className="text-xs">Brooklyn, NY</span>
                     </div>
-                    <p className="text-xs">August 2024 – Present</p>
+                    <p className="text-xs">August 2024 – December 2024</p>
                     <ul className="list-disc list-inside text-xs">
                         <li>Developed an AI-powered flower arrangement marketplace using TypeScript, Next.js, Express, Prisma, and Stripe, enabling personalized customer-flower matching that provides an engaging and streamlined experience for users.
                         </li>
@@ -40,52 +40,17 @@ function ShortenedApp() {
 
                 <div className="mb-1">
                     <div className="flex justify-between items-baseline">
-                        <h3 className="text-sm"><strong>Software Developer</strong> | Quiller</h3>
-                        <span className="text-xs">Brooklyn, NY</span>
+                        <h3 className="text-sm"><strong>Contract Software Engineer</strong></h3>
+                        <span className="text-xs">Remote/Brooklyn, NY</span>
                     </div>
-                    <p className="text-xs">November 2024-present</p>
                     <ul className="list-disc list-inside text-xs">
-                        <li>Using TypeScript, Prisma, and the HubSpot API, developed and implemented an automated user onboarding system integrating Hubspot with internal systems, reducing manual setup time by 80% and improving new user activation rates</li>
+                        <li><strong>Membrane</strong> (Sep - Oct 2024) | Augmented GitHub integration to handle org-wide events and PR reviews; created a Slack bot for end of day report reminders & a Discord bot for automating event posts</li>
+                        <li><strong>ApplyAll</strong> (Sep 2024) | Built a TypeScript service that goes through resumes like a pro recruiter and annotates the resume with specific feedback, leveraging the OpenAI API</li>
+                        <li><strong>Open Book Club</strong> (Oct - Nov 2024) | Used JavaScript, React, MongoDB, Tailwind CSS, and Express to develop notification center; implemented polling for real-time updates and JavaScript Intersection Observer API for lazy scrolling; used React hooks to resolve Twilio authentication issues</li>
+                        <li><strong>Quiller</strong> (Nov - Dec 2024) | Using TypeScript, Prisma, and the HubSpot API, developed and implemented an automated user onboarding system integrating Hubspot with internal systems, reducing manual setup time by 80% and improving new user activation rates</li>
                     </ul>
                 </div>
 
-                <div className="mb-1">
-                    <div className="flex justify-between items-baseline">
-                        <h3 className="text-sm"><strong>Software Developer</strong> | Open Book Club</h3>
-                        <span className="text-xs">Brooklyn, NY</span>
-                    </div>
-                    <p className="text-xs">October 2024-November 2024</p>
-                    <ul className="list-disc list-inside text-xs">
-                        <li>Used JavaScript, React, MongoDB, Tailwind CSS, and Express to develop notification center for book club platform</li>
-                        <li>Used React hooks to fix bug that resulted in unnecessary user logins </li>
-                        <li>Implemented polling to keep notifications up to date without refresh and used JavaScript Intersection Observer API for lazy scrolling</li>
-                    </ul>
-                </div>
-
-                <div className="mb-1">
-                    <div className="flex justify-between items-baseline">
-                        <h3 className="text-sm"><strong>Software Developer</strong> | ApplyAll</h3>
-                        <span className="text-xs">Brooklyn, NY</span>
-                    </div>
-                    <p className="text-xs">September 2024</p>
-                    <ul className="list-disc list-inside text-xs">
-                        <li>Built a TypeScript service that goes through resumes like a pro recruiter and annotates the resume with specific feedback, leveraging LLMs</li>
-                    </ul>
-                </div>
-
-                <div className="mb-1">
-                    <div className="flex justify-between items-baseline">
-                        <h3 className="text-sm"><strong>Software Developer</strong> | Membrane</h3>
-                        <span className="text-xs">Remote</span>
-                    </div>
-                    <p className="text-xs">September 2024 – October 2024</p>
-                    <ul className="list-disc list-inside text-xs">
-                        <li>Augmented the GitHub integration to handle org-wide events and PR reviews</li>
-                        <li>Developed algorithm to pull types straight from Linear's schema to produce an API driver</li>
-                        <li>Observed, reported, and tracked bugs and UX issues</li>
-                        <li>Used platform create multiple useful integrations that illustrate its power to potential users</li>
-                    </ul>
-                </div>
                 <div className="mb-1">
                     <div className="flex justify-between items-baseline">
                         <h3 className="text-sm"><strong>Machine Learning Research & Engineer</strong> | Dasion</h3>
