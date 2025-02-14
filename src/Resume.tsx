@@ -13,7 +13,7 @@ function ShortenedApp() {
             <section className="mb-1">
                 <h2 className="text-lg font-semibold border-b border-gray-300 mb-1">SKILLS</h2>
                 <div className="text-xs">
-                    <div className="mb-0.5"><strong>Frontend:</strong> React, Tailwind CSS, Framer Motion, shadcn, React Router</div>
+                    <div className="mb-0.5"><strong>Frontend:</strong> React, React Native,Tailwind CSS, Framer Motion, shadcn, React Router</div>
                     <div className="mb-0.5"><strong>Backend:</strong> Python, Docker, Express, Socket.IO</div>
                     <div className="mb-0.5"><strong>Full Stack & Auth:</strong> Clerk, Next.JS, TypeScript</div>
                     <div className="mb-0.5"><strong>Databases:</strong> Redis, Prisma, MongoDB</div>
